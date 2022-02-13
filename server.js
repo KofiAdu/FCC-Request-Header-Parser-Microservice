@@ -4,6 +4,7 @@
 // init project
 require('dotenv').config();
 var express = require('express');
+
 var app = express();
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
@@ -26,7 +27,7 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/whoami", (req,res)=>{
-  res.json({ipaddress: req.headers['x-forwarded-for'],language: req.headers['accept-language'],
+  res.json({ipaddress: req.socket.address().address,language: req.headers['accept-language'],
   software: req.headers['user-agent'], })
 })
 
